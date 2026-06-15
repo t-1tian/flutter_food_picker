@@ -4,6 +4,12 @@
 
 一款轻量、随机、好看的「今天吃啥」决策小助手——点一下按钮，从 50+ 道菜品里随机抽一个，让你每天的「世纪难题」瞬间有解。
 
+## 在线预览
+
+👉 https://t-1tian.github.io/flutter_food_picker/
+
+> 由 `gh-pages` 分支自动部署，每次合并到 `main` 后重新构建并发布。
+
 ## 项目信息
 
 | 项目 | 内容 |
@@ -12,8 +18,8 @@
 | 小组 | 第三组 |
 | 课程 | 移动应用软件开发实训 |
 | 学期 | 2026 春 |
-| 仓库 | https://gitee.com/svtyt/flutter_food_picker.git |
-| 技术栈 | Flutter / Dart / Material Design |
+| 仓库 | https://github.com/t-1tian/flutter_food_picker |
+| 技术栈 | Flutter Web / Dart / Material Design |
 
 ## 团队分工
 
@@ -31,13 +37,15 @@
 
 ```
 main                ← 受保护分支，由 F 同学 review 后合并
+gh-pages            ← 自动部署分支（不要手动改）
 dev/A, dev/B, ...   ← 每位成员在自己的开发分支上工作
 ```
 
 **协作流程：**
 1. 在自己的分支上 `git add .` → `git commit -m "..."` → `git push origin dev/X`
-2. 在 Gitee 上提交 **Pull Request**，标题写明功能
+2. 在 GitHub 上提交 **Pull Request**，标题写明功能
 3. 等 F 同学 review 通过后合并到 main
+4. F 同学定期跑 `flutter build web` 并推送到 `gh-pages`
 
 ## 目录结构
 
@@ -55,6 +63,7 @@ flutter_food_picker/
 │   └── theme/                  # 全局样式
 ├── assets/
 │   └── food_list.json          # 菜品数据（由 C 同学维护）
+├── web/                        # Flutter Web 构建相关
 ├── pubspec.yaml
 └── README.md
 ```
@@ -69,6 +78,7 @@ flutter_food_picker/
 - [ ] 加载中 / 网络异常 / 数据为空 三种提示
 - [ ] 全局统一样式（按钮 / 文本 / 卡片）
 - [ ] 多端适配（不同手机尺寸无错位）
+- [ ] Flutter Web 在线预览（GitHub Pages）
 
 ## 本地运行
 
@@ -76,6 +86,25 @@ flutter_food_picker/
 flutter pub get
 flutter run -d chrome        # Chrome 调试
 flutter run -d <设备ID>      # 真机调试
+flutter build web            # 构建 Web 静态资源
+```
+
+## Web 部署流程（仅 F 同学执行）
+
+```bash
+# 1. 构建
+flutter build web --release
+
+# 2. 进入构建产物目录
+cd build/web
+
+# 3. 部署到 gh-pages 分支
+git checkout gh-pages
+git rm -rf .
+cp -r build/web/* .  # 或者直接：cp -r ../build/web/* .
+git add .
+git commit -m "deploy: 更新 Web 预览 $(date +%Y-%m-%d)"
+git push origin gh-pages
 ```
 
 ## Flutter SDK
@@ -107,6 +136,6 @@ Commit message 建议使用以下前缀：
 
 ## 仓库管理员
 
-- 仓库地址：https://gitee.com/svtyt/flutter_food_picker
+- 仓库地址：https://github.com/t-1tian/flutter_food_picker
 - 管理员：F 同学
-- BUG 反馈：在 Gitee Issues 中提交
+- BUG 反馈：在 GitHub Issues 中提交

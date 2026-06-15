@@ -1,4 +1,4 @@
--- 八、项目结构（参考）
+# 八、项目结构（参考）
 
 # 目录约定
 lib/
@@ -21,4 +21,5 @@ lib/
 assets/
 └── food_list.json             # 菜品数据（50+ 道，C 同学负责）
 
+web/                           # Flutter Web 构建目录（自动生成）
 screenshots/                   # 截图（所有人）
