@@ -1,0 +1,707 @@
+{
+  "version": "2.0",
+  "update_time": "2026-06-15",
+  "description": "今天吃啥 - 大学生日常菜品 v2.0（组员C：数据层，100道菜品）",
+  "foods": [
+    {
+      "id": "001",
+      "name": "宫保鸡丁",
+      "spicy": "中等",
+      "cuisine": "川菜",
+      "main_ingredients": ["鸡胸肉", "花生", "干辣椒", "葱白"]
+    },
+    {
+      "id": "002",
+      "name": "麻婆豆腐",
+      "spicy": "辣",
+      "cuisine": "川菜",
+      "main_ingredients": ["嫩豆腐", "牛肉末", "花椒", "豆瓣酱"]
+    },
+    {
+      "id": "003",
+      "name": "水煮鱼",
+      "spicy": "辣",
+      "cuisine": "川菜",
+      "main_ingredients": ["草鱼", "豆芽", "干辣椒", "花椒"]
+    },
+    {
+      "id": "004",
+      "name": "回锅肉",
+      "spicy": "微辣",
+      "cuisine": "川菜",
+      "main_ingredients": ["五花肉", "青蒜", "豆瓣酱", "豆豉"]
+    },
+    {
+      "id": "005",
+      "name": "鱼香肉丝",
+      "spicy": "微辣",
+      "cuisine": "川菜",
+      "main_ingredients": ["猪里脊", "木耳", "笋丝", "泡椒"]
+    },
+    {
+      "id": "006",
+      "name": "口水鸡",
+      "spicy": "中等",
+      "cuisine": "川菜",
+      "main_ingredients": ["三黄鸡", "花生碎", "芝麻", "红油"]
+    },
+    {
+      "id": "007",
+      "name": "辣子鸡",
+      "spicy": "特辣",
+      "cuisine": "川菜",
+      "main_ingredients": ["鸡腿肉", "干辣椒", "花椒", "芝麻"]
+    },
+    {
+      "id": "008",
+      "name": "水煮肉片",
+      "spicy": "辣",
+      "cuisine": "川菜",
+      "main_ingredients": ["猪里脊", "豆芽", "干辣椒", "花椒"]
+    },
+    {
+      "id": "009",
+      "name": "夫妻肺片",
+      "spicy": "中等",
+      "cuisine": "川菜",
+      "main_ingredients": ["牛舌", "牛心", "牛肚", "红油"]
+    },
+    {
+      "id": "010",
+      "name": "白切鸡",
+      "spicy": "不辣",
+      "cuisine": "粤菜",
+      "main_ingredients": ["三黄鸡", "姜葱", "沙姜", "花生油"]
+    },
+    {
+      "id": "011",
+      "name": "烧鹅",
+      "spicy": "不辣",
+      "cuisine": "粤菜",
+      "main_ingredients": ["黑棕鹅", "麦芽糖", "五香粉", "酸梅酱"]
+    },
+    {
+      "id": "012",
+      "name": "清蒸石斑鱼",
+      "spicy": "不辣",
+      "cuisine": "粤菜",
+      "main_ingredients": ["石斑鱼", "姜丝", "葱丝", "蒸鱼豉油"]
+    },
+    {
+      "id": "013",
+      "name": "蜜汁叉烧",
+      "spicy": "不辣",
+      "cuisine": "粤菜",
+      "main_ingredients": ["梅头肉", "叉烧酱", "蜂蜜", "麦芽糖"]
+    },
+    {
+      "id": "014",
+      "name": "白灼虾",
+      "spicy": "不辣",
+      "cuisine": "粤菜",
+      "main_ingredients": ["基围虾", "姜葱", "蒸鱼豉油", "香油"]
+    },
+    {
+      "id": "015",
+      "name": "糖醋鲤鱼",
+      "spicy": "不辣",
+      "cuisine": "鲁菜",
+      "main_ingredients": ["黄河鲤鱼", "番茄酱", "白糖", "醋"]
+    },
+    {
+      "id": "016",
+      "name": "九转大肠",
+      "spicy": "微辣",
+      "cuisine": "鲁菜",
+      "main_ingredients": ["猪大肠", "白糖", "醋", "砂仁粉"]
+    },
+    {
+      "id": "017",
+      "name": "葱烧海参",
+      "spicy": "不辣",
+      "cuisine": "鲁菜",
+      "main_ingredients": ["海参", "大葱", "高汤", "鲍鱼汁"]
+    },
+    {
+      "id": "018",
+      "name": "剁椒鱼头",
+      "spicy": "辣",
+      "cuisine": "湘菜",
+      "main_ingredients": ["胖头鱼头", "剁椒", "蒜末", "豆豉"]
+    },
+    {
+      "id": "019",
+      "name": "毛氏红烧肉",
+      "spicy": "不辣",
+      "cuisine": "湘菜",
+      "main_ingredients": ["五花肉", "冰糖", "八角", "桂皮"]
+    },
+    {
+      "id": "020",
+      "name": "腊味合蒸",
+      "spicy": "微辣",
+      "cuisine": "湘菜",
+      "main_ingredients": ["腊肉", "腊鱼", "腊鸡", "干豆豉"]
+    },
+    {
+      "id": "021",
+      "name": "辣椒炒肉",
+      "spicy": "中等",
+      "cuisine": "湘菜",
+      "main_ingredients": ["五花肉", "青辣椒", "豆豉", "蒜"]
+    },
+    {
+      "id": "022",
+      "name": "永州血鸭",
+      "spicy": "辣",
+      "cuisine": "湘菜",
+      "main_ingredients": ["麻鸭", "鸭血", "青红椒", "姜蒜"]
+    },
+    {
+      "id": "023",
+      "name": "西湖醋鱼",
+      "spicy": "不辣",
+      "cuisine": "浙菜",
+      "main_ingredients": ["草鱼", "醋", "姜末", "白糖"]
+    },
+    {
+      "id": "024",
+      "name": "龙井虾仁",
+      "spicy": "不辣",
+      "cuisine": "浙菜",
+      "main_ingredients": ["河虾仁", "龙井茶叶", "蛋清", "淀粉"]
+    },
+    {
+      "id": "025",
+      "name": "东坡肉",
+      "spicy": "不辣",
+      "cuisine": "浙菜",
+      "main_ingredients": ["五花肉", "黄酒", "冰糖", "酱油"]
+    },
+    {
+      "id": "026",
+      "name": "蟹粉狮子头",
+      "spicy": "不辣",
+      "cuisine": "淮扬菜",
+      "main_ingredients": ["五花肉", "蟹粉", "马蹄", "高汤"]
+    },
+    {
+      "id": "027",
+      "name": "清炖蟹粉狮子头",
+      "spicy": "不辣",
+      "cuisine": "淮扬菜",
+      "main_ingredients": ["五花肉", "蟹粉", "小白菜", "鸡汤"]
+    },
+    {
+      "id": "028",
+      "name": "佛跳墙",
+      "spicy": "不辣",
+      "cuisine": "闽菜",
+      "main_ingredients": ["鲍鱼", "海参", "鱼翅", "瑶柱"]
+    },
+    {
+      "id": "029",
+      "name": "沙茶面",
+      "spicy": "不辣",
+      "cuisine": "闽菜",
+      "main_ingredients": ["碱水面", "沙茶酱", "虾仁", "豆腐"]
+    },
+    {
+      "id": "030",
+      "name": "臭鳜鱼",
+      "spicy": "微辣",
+      "cuisine": "徽菜",
+      "main_ingredients": ["腌制鳜鱼", "笋丁", "火腿", "姜蒜"]
+    },
+    {
+      "id": "031",
+      "name": "徽州毛豆腐",
+      "spicy": "不辣",
+      "cuisine": "徽菜",
+      "main_ingredients": ["毛豆腐", "葱花", "辣椒酱", "香油"]
+    },
+    {
+      "id": "032",
+      "name": "锅包肉",
+      "spicy": "不辣",
+      "cuisine": "东北菜",
+      "main_ingredients": ["猪里脊", "土豆淀粉", "白糖", "醋"]
+    },
+    {
+      "id": "033",
+      "name": "小鸡炖蘑菇",
+      "spicy": "不辣",
+      "cuisine": "东北菜",
+      "main_ingredients": ["小公鸡", "榛蘑", "粉条", "土豆"]
+    },
+    {
+      "id": "034",
+      "name": "地三鲜",
+      "spicy": "不辣",
+      "cuisine": "东北菜",
+      "main_ingredients": ["茄子", "土豆", "青椒", "蒜末"]
+    },
+    {
+      "id": "035",
+      "name": "猪肉炖粉条",
+      "spicy": "不辣",
+      "cuisine": "东北菜",
+      "main_ingredients": ["五花肉", "红薯粉条", "酸菜", "冻豆腐"]
+    },
+    {
+      "id": "036",
+      "name": "兰州拉面",
+      "spicy": "微辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["牛肉", "拉面", "白萝卜", "辣椒油"]
+    },
+    {
+      "id": "037",
+      "name": "重庆小面",
+      "spicy": "辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["碱水面", "辣椒油", "花椒粉", "榨菜"]
+    },
+    {
+      "id": "038",
+      "name": "肉夹馍",
+      "spicy": "微辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["白吉馍", "腊汁肉", "青椒", "香菜"]
+    },
+    {
+      "id": "039",
+      "name": "煎饼果子",
+      "spicy": "不辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["绿豆面糊", "鸡蛋", "油条", "甜面酱"]
+    },
+    {
+      "id": "040",
+      "name": "螺蛳粉",
+      "spicy": "辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["米粉", "螺蛳汤", "酸笋", "花生"]
+    },
+    {
+      "id": "041",
+      "name": "沙县拌面",
+      "spicy": "不辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["碱水面", "花生酱", "葱花", "酱油"]
+    },
+    {
+      "id": "042",
+      "name": "武汉热干面",
+      "spicy": "微辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["碱水面", "芝麻酱", "萝卜干", "葱花"]
+    },
+    {
+      "id": "043",
+      "name": "广式早茶虾饺",
+      "spicy": "不辣",
+      "cuisine": "粤菜",
+      "main_ingredients": ["澄面粉", "鲜虾", "笋丁", "猪油"]
+    },
+    {
+      "id": "044",
+      "name": "黑椒牛排",
+      "spicy": "微辣",
+      "cuisine": "西餐",
+      "main_ingredients": ["牛里脊", "黑胡椒", "黄油", "红酒"]
+    },
+    {
+      "id": "045",
+      "name": "凯撒沙拉",
+      "spicy": "不辣",
+      "cuisine": "西餐",
+      "main_ingredients": ["罗马生菜", "凯撒酱", "面包丁", "帕玛森芝士"]
+    },
+    {
+      "id": "046",
+      "name": "玛格丽特披萨",
+      "spicy": "不辣",
+      "cuisine": "西餐",
+      "main_ingredients": ["披萨饼底", "马苏里拉芝士", "番茄", "罗勒"]
+    },
+    {
+      "id": "047",
+      "name": "意式肉酱面",
+      "spicy": "不辣",
+      "cuisine": "西餐",
+      "main_ingredients": ["意面", "牛肉末", "番茄酱", "洋葱"]
+    },
+    {
+      "id": "048",
+      "name": "奶油蘑菇汤",
+      "spicy": "不辣",
+      "cuisine": "西餐",
+      "main_ingredients": ["白蘑菇", "淡奶油", "黄油", "洋葱"]
+    },
+    {
+      "id": "049",
+      "name": "法式洋葱汤",
+      "spicy": "不辣",
+      "cuisine": "西餐",
+      "main_ingredients": ["洋葱", "牛骨汤", "法棍", "格鲁耶尔芝士"]
+    },
+    {
+      "id": "050",
+      "name": "寿司拼盘",
+      "spicy": "不辣",
+      "cuisine": "日料",
+      "main_ingredients": ["寿司米", "三文鱼", "金枪鱼", "北极贝"]
+    },
+    {
+      "id": "051",
+      "name": "刺身拼盘",
+      "spicy": "不辣",
+      "cuisine": "日料",
+      "main_ingredients": ["三文鱼", "北极贝", "甜虾", "金枪鱼"]
+    },
+    {
+      "id": "052",
+      "name": "天妇罗",
+      "spicy": "不辣",
+      "cuisine": "日料",
+      "main_ingredients": ["大虾", "南瓜", "茄子", "天妇罗粉"]
+    },
+    {
+      "id": "053",
+      "name": "日式豚骨拉面",
+      "spicy": "不辣",
+      "cuisine": "日料",
+      "main_ingredients": ["拉面", "豚骨汤", "叉烧", "溏心蛋"]
+    },
+    {
+      "id": "054",
+      "name": "鳗鱼饭",
+      "spicy": "不辣",
+      "cuisine": "日料",
+      "main_ingredients": ["鳗鱼", "蒲烧汁", "米饭", "海苔"]
+    },
+    {
+      "id": "055",
+      "name": "部队火锅",
+      "spicy": "辣",
+      "cuisine": "韩餐",
+      "main_ingredients": ["辛拉面", "年糕", "芝士年糕", "午餐肉"]
+    },
+    {
+      "id": "056",
+      "name": "石锅拌饭",
+      "spicy": "微辣",
+      "cuisine": "韩餐",
+      "main_ingredients": ["米饭", "牛肉", "菠菜", "韩式辣酱"]
+    },
+    {
+      "id": "057",
+      "name": "韩式烤五花肉",
+      "spicy": "微辣",
+      "cuisine": "韩餐",
+      "main_ingredients": ["五花肉", "生菜", "蒜片", "韩式大酱"]
+    },
+    {
+      "id": "058",
+      "name": "提拉米苏",
+      "spicy": "不辣",
+      "cuisine": "甜品",
+      "main_ingredients": ["马斯卡彭", "手指饼干", "浓缩咖啡", "可可粉"]
+    },
+    {
+      "id": "059",
+      "name": "芝士蛋糕",
+      "spicy": "不辣",
+      "cuisine": "甜品",
+      "main_ingredients": ["奶油芝士", "消化饼干", "黄油", "蓝莓"]
+    },
+    {
+      "id": "060",
+      "name": "杨枝甘露",
+      "spicy": "不辣",
+      "cuisine": "饮品",
+      "main_ingredients": ["芒果", "西米", "椰浆", "西柚"]
+    },
+    {
+      "id": "061",
+      "name": "黄焖鸡米饭",
+      "spicy": "微辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["三黄鸡", "香菇", "青椒", "米饭"]
+    },
+    {
+      "id": "062",
+      "name": "鸡公煲",
+      "spicy": "中等",
+      "cuisine": "食堂",
+      "main_ingredients": ["鸡腿肉", "洋葱", "芹菜", "啤酒"]
+    },
+    {
+      "id": "063",
+      "name": "麻辣香锅",
+      "spicy": "辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["莲藕", "土豆", "午餐肉", "麻辣底料"]
+    },
+    {
+      "id": "064",
+      "name": "冒菜",
+      "spicy": "辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["牛肉", "土豆片", "藕片", "冒菜底料"]
+    },
+    {
+      "id": "065",
+      "name": "麻辣烫",
+      "spicy": "中等",
+      "cuisine": "食堂",
+      "main_ingredients": ["丸子", "金针菇", "生菜", "宽粉"]
+    },
+    {
+      "id": "066",
+      "name": "砂锅粉",
+      "spicy": "微辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["米粉", "鹌鹑蛋", "生菜", "番茄"]
+    },
+    {
+      "id": "067",
+      "name": "过桥米线",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["米线", "鸡胸肉", "鹌鹑蛋", "韭菜"]
+    },
+    {
+      "id": "068",
+      "name": "酸辣粉",
+      "spicy": "辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["红薯粉", "花生", "香菜", "陈醋"]
+    },
+    {
+      "id": "069",
+      "name": "重庆酸辣粉",
+      "spicy": "辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["红薯粉", "肉末", "芽菜", "辣椒油"]
+    },
+    {
+      "id": "070",
+      "name": "冒菜单人套餐",
+      "spicy": "中等",
+      "cuisine": "食堂",
+      "main_ingredients": ["藕片", "土豆", "毛肚", "冒菜底料"]
+    },
+    {
+      "id": "071",
+      "name": "黄焖猪脚饭",
+      "spicy": "微辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["猪脚", "香菇", "青椒", "米饭"]
+    },
+    {
+      "id": "072",
+      "name": "梅菜扣肉饭",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["五花肉", "梅干菜", "米饭", "酱汁"]
+    },
+    {
+      "id": "073",
+      "name": "台式卤肉饭",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["五花肉末", "卤汁", "溏心蛋", "米饭"]
+    },
+    {
+      "id": "074",
+      "name": "照烧鸡腿饭",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["鸡腿肉", "照烧汁", "米饭", "西兰花"]
+    },
+    {
+      "id": "075",
+      "name": "咖喱鸡饭",
+      "spicy": "微辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["鸡胸肉", "咖喱块", "土豆", "米饭"]
+    },
+    {
+      "id": "076",
+      "name": "黑椒牛柳饭",
+      "spicy": "微辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["牛里脊", "黑椒酱", "青椒", "米饭"]
+    },
+    {
+      "id": "077",
+      "name": "糖醋里脊饭",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["猪里脊", "番茄酱", "白芝麻", "米饭"]
+    },
+    {
+      "id": "078",
+      "name": "红烧排骨饭",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["猪肋排", "土豆", "酱油", "米饭"]
+    },
+    {
+      "id": "079",
+      "name": "蛋炒饭",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["隔夜米饭", "鸡蛋", "葱花", "酱油"]
+    },
+    {
+      "id": "080",
+      "name": "扬州炒饭",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["米饭", "虾仁", "火腿", "青豆"]
+    },
+    {
+      "id": "081",
+      "name": "番茄鸡蛋面",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["挂面", "番茄", "鸡蛋", "葱花"]
+    },
+    {
+      "id": "082",
+      "name": "牛肉拌面",
+      "spicy": "微辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["拉面", "牛肉片", "青菜", "芝麻酱"]
+    },
+    {
+      "id": "083",
+      "name": "重庆豌杂面",
+      "spicy": "辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["碱水面", "豌豆", "肉末", "杂酱"]
+    },
+    {
+      "id": "084",
+      "name": "葱油拌面",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["挂面", "小葱", "生抽", "老抽"]
+    },
+    {
+      "id": "085",
+      "name": "炸酱面",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["手擀面", "肉末", "黄豆酱", "黄瓜丝"]
+    },
+    {
+      "id": "086",
+      "name": "番茄牛肉饭",
+      "spicy": "不辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["牛腩", "番茄", "土豆", "米饭"]
+    },
+    {
+      "id": "087",
+      "name": "红烧牛肉面",
+      "spicy": "微辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["牛腩", "拉面", "白萝卜", "香菜"]
+    },
+    {
+      "id": "088",
+      "name": "肥牛米线",
+      "spicy": "微辣",
+      "cuisine": "食堂",
+      "main_ingredients": ["米线", "肥牛卷", "豆皮", "酸菜"]
+    },
+    {
+      "id": "089",
+      "name": "锡纸花甲粉",
+      "spicy": "中等",
+      "cuisine": "食堂",
+      "main_ingredients": ["花甲", "粉丝", "金针菇", "蒜蓉"]
+    },
+    {
+      "id": "090",
+      "name": "锡纸金针菇",
+      "spicy": "中等",
+      "cuisine": "食堂",
+      "main_ingredients": ["金针菇", "蒜蓉", "小米辣", "粉丝"]
+    },
+    {
+      "id": "091",
+      "name": "鸡蛋灌饼",
+      "spicy": "微辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["面饼", "鸡蛋", "生菜", "甜面酱"]
+    },
+    {
+      "id": "092",
+      "name": "手抓饼加蛋",
+      "spicy": "不辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["手抓饼", "鸡蛋", "火腿", "生菜"]
+    },
+    {
+      "id": "093",
+      "name": "烤冷面",
+      "spicy": "微辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["冷面皮", "鸡蛋", "火腿", "甜面酱"]
+    },
+    {
+      "id": "094",
+      "name": "鸡蛋仔",
+      "spicy": "不辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["鸡蛋", "面粉", "牛奶", "砂糖"]
+    },
+    {
+      "id": "095",
+      "name": "章鱼小丸子",
+      "spicy": "不辣",
+      "cuisine": "小吃",
+      "main_ingredients": ["章鱼", "面糊", "章鱼烧酱", "木鱼花"]
+    },
+    {
+      "id": "096",
+      "name": "炸鸡",
+      "spicy": "不辣",
+      "cuisine": "外卖",
+      "main_ingredients": ["鸡翅", "炸鸡粉", "薯条", "甜辣酱"]
+    },
+    {
+      "id": "097",
+      "name": "韩式炸鸡",
+      "spicy": "微辣",
+      "cuisine": "外卖",
+      "main_ingredients": ["鸡翅", "韩式辣酱", "蜂蜜", "白芝麻"]
+    },
+    {
+      "id": "098",
+      "name": "奶茶",
+      "spicy": "不辣",
+      "cuisine": "饮品",
+      "main_ingredients": ["红茶", "牛奶", "珍珠", "糖浆"]
+    },
+    {
+      "id": "099",
+      "name": "水果茶",
+      "spicy": "不辣",
+      "cuisine": "饮品",
+      "main_ingredients": ["百香果", "芒果", "绿茶", "蜂蜜"]
+    },
+    {
+      "id": "100",
+      "name": "蜜雪冰城柠檬水",
+      "spicy": "不辣",
+      "cuisine": "饮品",
+      "main_ingredients": ["柠檬", "冰块", "糖浆", "纯净水"]
+    }
+  ]
+}
