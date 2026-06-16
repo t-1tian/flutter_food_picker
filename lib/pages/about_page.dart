@@ -12,13 +12,13 @@ class AboutPage extends StatelessWidget {
   static const String teamName = '第三组';
 
   static const List<_Member> members = [
-    _Member(name: '蒋亿乐', studentId: '20241060087', role: '组长'),
+    _Member(name: '蒋亿乐', studentId: '20241060087'),
     _Member(name: '于昕冉', studentId: '20211170108'),
     _Member(name: '张蕴洁', studentId: '20241060249'),
     _Member(name: '刘昱泽', studentId: '20241120066'),
     _Member(name: '杨晨曦', studentId: '20241120237'),
     _Member(name: '王小梅', studentId: '20241060347'),
-    _Member(name: '唐一甜', studentId: '20241120103'),
+    _Member(name: '唐一甜', studentId: '20241120103', role: '组长'),
   ];
 
   @override
@@ -245,10 +245,10 @@ class _TeamCard extends StatelessWidget {
 class _DevNotesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return _InfoCard(
+    return const _InfoCard(
       title: '开发说明',
       icon: Icons.code_rounded,
-      children: const [
+      children: [
         SizedBox(height: AppSpacing.sm),
         Text(
           '本项目为移动应用软件开发实训期末大作业，由第三组协作完成。'

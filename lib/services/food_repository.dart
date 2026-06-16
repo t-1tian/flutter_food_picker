@@ -81,7 +81,7 @@ class FoodRepository {
     }
 
     final List<Food> foods = foodsJson
-        .where((e) => e is Map<String, dynamic>)
+        .whereType<Map<String, dynamic>>()
         .map((e) => Food.fromJson(e))
         .toList();
 

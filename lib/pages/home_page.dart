@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'about_page.dart';
+import '../services/food_repository.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
 import '../theme/app_text_styles.dart';
@@ -26,6 +29,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentNavIndex = 0;
+  late String _currentFoodName;
+  late String _currentFoodDesc;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentFoodName = widget.displayedFoodName;
+    _currentFoodDesc = widget.foodDescription;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +46,8 @@ class _HomePageState extends State<HomePage> {
         index: _currentNavIndex,
         children: [
           _HomeBody(
-            displayedFoodName: widget.displayedFoodName,
-            foodDescription: widget.foodDescription,
+            displayedFoodName: _currentFoodName,
+            foodDescription: _currentFoodDesc,
             onRandomPressed: widget.onRandomPressed ?? _handleRandomPressed,
           ),
           const _PlaceholderPage(
@@ -56,8 +68,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _handleRandomPressed() {
-    // TODO(Member B): Connect this callback to random food selection logic.
+  void _handleRandomPressed() async {
+    final result = await FoodRepository.instance.fetchAllFoods();
+    if (result.isSuccess && result.data != null && result.data!.isNotEmpty) {
+      final foods = result.data!;
+      final selected = foods[Random().nextInt(foods.length)];
+      setState(() {
+        _currentFoodName = selected.name;
+        _currentFoodDesc = '${selected.cuisine} · ${selected.spicy}';
+      });
+    }
   }
 
   void _handleNavSelected(int index) {
