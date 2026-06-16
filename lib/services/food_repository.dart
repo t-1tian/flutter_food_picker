@@ -82,7 +82,7 @@ class FoodRepository {
 
     final List<Food> foods = foodsJson
         .where((e) => e is Map<String, dynamic>)
-        .map((e) => Food.fromJson(e))
+        .map((e) => Food.fromJson(e as Map<String, dynamic>))
         .toList();
 
     if (foods.isEmpty) {

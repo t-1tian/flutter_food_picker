@@ -12,10 +12,7 @@ class TodayEatApp extends StatelessWidget {
       title: '今天吃啥',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
-      home: const HomePage(
-        displayedFoodName: '宫保鸡丁',
-        foodDescription: '酸甜咸香 · 下饭经典',
-      ),
+      home: const HomePage(),
     );
   }
 }
