@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../services/api_service.dart';
+import 'about_page.dart';
 import '../services/food_repository.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
@@ -143,44 +144,30 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final bool isNarrow = constraints.maxWidth < 380;
-            final double horizontalPadding = isNarrow
-                ? AppSpacing.pageHorizontalCompact
-                : AppSpacing.pageHorizontalWide;
-
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    horizontalPadding,
-                    AppSpacing.lg,
-                    horizontalPadding,
-                    AppSpacing.lg,
-                  ),
-                  child: Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: AppSpacing.maxContentWidth,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _BreathHeader(animation: _breathAnimation),
-                          SizedBox(height: isNarrow ? AppSpacing.lg : 44),
-                          _buildBody(),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
+      body: IndexedStack(
+        index: _currentNavIndex,
+        children: [
+          // 首页 - B同学实现的随机选菜功能
+          _HomeTabContent(
+            status: _status,
+            errorMessage: _errorMessage,
+            foods: _foods,
+            currentFood: _currentFood,
+            isRolling: _isRolling,
+            breathAnimation: _breathAnimation,
+            onRandomPressed: _handleRandomPressed,
+            onRetry: _loadFoods,
+          ),
+          const _PlaceholderPage(
+            icon: Icons.menu_book_rounded,
+            title: '使用说明',
+          ),
+          const _PlaceholderPage(
+            icon: Icons.verified_user_rounded,
+            title: '隐私合规',
+          ),
+          const AboutPage(),
+        ],
       ),
       bottomNavigationBar: AppBottomNav(
         currentIndex: _currentNavIndex,
@@ -188,9 +175,78 @@ class _HomePageState extends State<HomePage>
       ),
     );
   }
+}
+
+// ============================================================
+// 首页 Tab 内容（B同学：随机选菜核心功能 + 交互动效）
+// ============================================================
+
+class _HomeTabContent extends StatelessWidget {
+  const _HomeTabContent({
+    required this.status,
+    required this.errorMessage,
+    required this.foods,
+    required this.currentFood,
+    required this.isRolling,
+    required this.breathAnimation,
+    required this.onRandomPressed,
+    required this.onRetry,
+  });
+
+  final LoadStatus status;
+  final String? errorMessage;
+  final List<Food> foods;
+  final Food? currentFood;
+  final bool isRolling;
+  final Animation<double> breathAnimation;
+  final VoidCallback onRandomPressed;
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final bool isNarrow = constraints.maxWidth < 380;
+          final double horizontalPadding = isNarrow
+              ? AppSpacing.pageHorizontalCompact
+              : AppSpacing.pageHorizontalWide;
+
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                  horizontalPadding,
+                  AppSpacing.lg,
+                  horizontalPadding,
+                  AppSpacing.lg,
+                ),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: AppSpacing.maxContentWidth,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _BreathHeader(animation: breathAnimation),
+                        SizedBox(height: isNarrow ? AppSpacing.lg : 44),
+                        _buildBody(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
 
   Widget _buildBody() {
-    switch (_status) {
+    switch (status) {
       case LoadStatus.loading:
         return const Center(
           child: Padding(
@@ -223,7 +279,7 @@ class _HomePageState extends State<HomePage>
             ),
             const SizedBox(height: AppSpacing.md),
             Text(
-              _errorMessage ?? '加载失败',
+              errorMessage ?? '加载失败',
               textAlign: TextAlign.center,
               style: AppTextStyles.body,
             ),
@@ -233,7 +289,7 @@ class _HomePageState extends State<HomePage>
               child: AppPrimaryButton(
                 text: '重试',
                 icon: Icons.refresh_rounded,
-                onPressed: _loadFoods,
+                onPressed: onRetry,
               ),
             ),
           ],
@@ -256,7 +312,7 @@ class _HomePageState extends State<HomePage>
             ),
             const SizedBox(height: AppSpacing.md),
             Text(
-              _errorMessage ?? '暂无菜品数据',
+              errorMessage ?? '暂无菜品数据',
               textAlign: TextAlign.center,
               style: AppTextStyles.body,
             ),
@@ -267,19 +323,19 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget _buildContent() {
-    final bool hasSelection = _currentFood != null;
+    final bool hasSelection = currentFood != null;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AnimatedSwitcher(
-          duration: _isRolling
+          duration: isRolling
               ? const Duration(milliseconds: 50)
               : const Duration(milliseconds: 400),
           switchInCurve: Curves.easeOut,
           switchOutCurve: Curves.easeIn,
           transitionBuilder: (Widget child, Animation<double> animation) {
-            if (_isRolling) {
+            if (isRolling) {
               // 滚动时只做 fade，不做 slide
               return FadeTransition(opacity: animation, child: child);
             }
@@ -296,13 +352,13 @@ class _HomePageState extends State<HomePage>
           },
           child: hasSelection
               ? AppFoodCard(
-                  key: ValueKey(_currentFood!.id),
-                  foodName: _currentFood!.name,
-                  description: '${_currentFood!.cuisine} · ${_currentFood!.spicy}',
-                  spicy: _currentFood!.spicy,
-                  cuisine: _currentFood!.cuisine,
-                  ingredients: _currentFood!.ingredientsText,
-                  animateEntry: !_isRolling,
+                  key: ValueKey(currentFood!.id),
+                  foodName: currentFood!.name,
+                  description: '${currentFood!.cuisine} · ${currentFood!.spicy}',
+                  spicy: currentFood!.spicy,
+                  cuisine: currentFood!.cuisine,
+                  ingredients: currentFood!.ingredientsText,
+                  animateEntry: !isRolling,
                 )
               : const AppFoodCard(
                   foodName: '今天吃什么',
@@ -314,7 +370,7 @@ class _HomePageState extends State<HomePage>
         const SizedBox(height: AppSpacing.lg),
         AppPrimaryButton(
           text: '开始随机',
-          onPressed: _foods.isNotEmpty && !_isRolling ? _handleRandomPressed : null,
+          onPressed: foods.isNotEmpty && !isRolling ? onRandomPressed : null,
         ),
       ],
     );
@@ -379,6 +435,44 @@ class _HintText extends StatelessWidget {
         SizedBox(width: AppSpacing.xs),
         Expanded(child: Text('点击按钮，随机决定今天吃什么', style: AppTextStyles.body)),
       ],
+    );
+  }
+}
+
+// ---------- Placeholder page for E's work ----------
+
+class _PlaceholderPage extends StatelessWidget {
+  const _PlaceholderPage({required this.icon, required this.title});
+
+  final IconData icon;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 72,
+            height: 72,
+            decoration: BoxDecoration(
+              color: AppColors.surfaceWarm,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Icon(icon, size: 36, color: AppColors.primaryDark),
+          ),
+          const SizedBox(height: AppSpacing.md),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: AppColors.textSecondary,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
