@@ -3,6 +3,7 @@
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
+pubspec.lock
 
 # Build output
 build/
