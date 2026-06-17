@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
+import 'about_page.dart';
+import '../services/food_repository.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
 import '../theme/app_text_styles.dart';
@@ -25,59 +29,37 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentNavIndex = 0;
+  late String _currentFoodName;
+  late String _currentFoodDesc;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentFoodName = widget.displayedFoodName;
+    _currentFoodDesc = widget.foodDescription;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final bool isNarrow = constraints.maxWidth < 380;
-            final double horizontalPadding = isNarrow
-                ? AppSpacing.pageHorizontalCompact
-                : AppSpacing.pageHorizontalWide;
-
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    horizontalPadding,
-                    AppSpacing.lg,
-                    horizontalPadding,
-                    AppSpacing.lg,
-                  ),
-                  child: Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: AppSpacing.maxContentWidth,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const _Header(),
-                          SizedBox(height: isNarrow ? AppSpacing.lg : 44),
-                          AppFoodCard(
-                            foodName: widget.displayedFoodName,
-                            description: widget.foodDescription,
-                          ),
-                          const SizedBox(height: AppSpacing.md),
-                          const _HintText(),
-                          const SizedBox(height: AppSpacing.lg),
-                          AppPrimaryButton(
-                            text: '开始随机',
-                            onPressed:
-                                widget.onRandomPressed ?? _handleRandomPressed,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
+      body: IndexedStack(
+        index: _currentNavIndex,
+        children: [
+          _HomeBody(
+            displayedFoodName: _currentFoodName,
+            foodDescription: _currentFoodDesc,
+            onRandomPressed: widget.onRandomPressed ?? _handleRandomPressed,
+          ),
+          const _PlaceholderPage(
+            icon: Icons.menu_book_rounded,
+            title: '使用说明',
+          ),
+          const _PlaceholderPage(
+            icon: Icons.verified_user_rounded,
+            title: '隐私合规',
+          ),
+          const AboutPage(),
+        ],
       ),
       bottomNavigationBar: AppBottomNav(
         currentIndex: _currentNavIndex,
@@ -86,13 +68,20 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _handleRandomPressed() {
-    // TODO(Member B): Connect this callback to random food selection logic.
+  void _handleRandomPressed() async {
+    final result = await FoodRepository.instance.fetchAllFoods();
+    if (result.isSuccess && result.data != null && result.data!.isNotEmpty) {
+      final foods = result.data!;
+      final selected = foods[Random().nextInt(foods.length)];
+      setState(() {
+        _currentFoodName = selected.name;
+        _currentFoodDesc = '${selected.cuisine} · ${selected.spicy}';
+      });
+    }
   }
 
   void _handleNavSelected(int index) {
     setState(() => _currentNavIndex = index);
-    // TODO(Members D/E): Wire these visual nav items to real pages later.
   }
 }
 
@@ -148,6 +137,111 @@ class _HintText extends StatelessWidget {
         SizedBox(width: AppSpacing.xs),
         Expanded(child: Text('点击按钮，随机决定今天吃什么', style: AppTextStyles.body)),
       ],
+    );
+  }
+}
+
+// ---------- Home body ----------
+
+class _HomeBody extends StatelessWidget {
+  const _HomeBody({
+    required this.displayedFoodName,
+    required this.foodDescription,
+    required this.onRandomPressed,
+  });
+
+  final String displayedFoodName;
+  final String foodDescription;
+  final VoidCallback onRandomPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final bool isNarrow = constraints.maxWidth < 380;
+          final double horizontalPadding = isNarrow
+              ? AppSpacing.pageHorizontalCompact
+              : AppSpacing.pageHorizontalWide;
+
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                  horizontalPadding,
+                  AppSpacing.lg,
+                  horizontalPadding,
+                  AppSpacing.lg,
+                ),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: AppSpacing.maxContentWidth,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const _Header(),
+                        SizedBox(height: isNarrow ? AppSpacing.lg : 44),
+                        AppFoodCard(
+                          foodName: displayedFoodName,
+                          description: foodDescription,
+                        ),
+                        const SizedBox(height: AppSpacing.md),
+                        const _HintText(),
+                        const SizedBox(height: AppSpacing.lg),
+                        AppPrimaryButton(
+                          text: '开始随机',
+                          onPressed: onRandomPressed,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+// ---------- Placeholder page for E's work ----------
+
+class _PlaceholderPage extends StatelessWidget {
+  const _PlaceholderPage({required this.icon, required this.title});
+
+  final IconData icon;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 72,
+            height: 72,
+            decoration: BoxDecoration(
+              color: AppColors.surfaceWarm,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Icon(icon, size: 36, color: AppColors.primaryDark),
+          ),
+          const SizedBox(height: AppSpacing.md),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: AppColors.textSecondary,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
