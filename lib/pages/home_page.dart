@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../services/api_service.dart';
 import 'about_page.dart';
+import 'guide_page.dart';
+import 'privacy_page.dart';
 import '../services/food_repository.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
@@ -158,14 +160,8 @@ class _HomePageState extends State<HomePage>
             onRandomPressed: _handleRandomPressed,
             onRetry: _loadFoods,
           ),
-          const _PlaceholderPage(
-            icon: Icons.menu_book_rounded,
-            title: '使用说明',
-          ),
-          const _PlaceholderPage(
-            icon: Icons.verified_user_rounded,
-            title: '隐私合规',
-          ),
+          const GuidePage(),
+          const PrivacyPage(),
           const AboutPage(),
         ],
       ),
