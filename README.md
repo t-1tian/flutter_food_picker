@@ -31,10 +31,6 @@
 
 ![关于我们](screenshots/03_about.png)
 
-### 菜品浏览 — 全部 100 道菜品列表（支持辣度筛选）
-
-![菜品列表](screenshots/04_food_list.png)
-
 ### 使用说明 — 操作指引
 
 ![使用说明](screenshots/05_guide.png)
